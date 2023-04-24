@@ -18,7 +18,13 @@ test_class.class_eval do
   alias_method :teardown_without_webmock, :teardown
   def teardown_with_webmock
     teardown_without_webmock
-    WebMock.reset!
+
+    if defined?(Minitest::Hooks) && self.class.respond_to?(:after_all_called?) && self.class.after_all_called?
+      WebMock.reset!
+    elsif !defined?(Minitest::Hooks) 
+      WebMock.reset!
+    end
+
   end
   alias_method :teardown, :teardown_with_webmock
 

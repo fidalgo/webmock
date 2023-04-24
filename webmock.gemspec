@@ -43,6 +43,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'excon',           '>= 0.27.5'
   s.add_development_dependency 'async-http',      '>= 0.48.0'
   s.add_development_dependency 'minitest',        '>= 5.0.0'
+  s.add_development_dependency 'minitest-hooks',  '>= 1.5.0'
   s.add_development_dependency 'test-unit',       '>= 3.0.0'
   s.add_development_dependency 'rdoc',            '>  3.5.0'
   s.add_development_dependency 'webrick'

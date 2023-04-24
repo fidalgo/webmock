@@ -29,10 +29,17 @@ Rake::TestTask.new(:test) do |test|
 end
 
 Rake::TestTask.new(:minitest) do |test|
-  test.test_files = FileList["minitest/**/*.rb"].exclude("test/test_helper.rb")
+  test.test_files = FileList["minitest/**/*.rb"].exclude("test/test_helper.rb", "minitest/webmock_with_hooks_test.rb")
   test.options = "--pride"
   test.verbose = false
   test.warning = false
 end
 
-task default: [:spec, :spec_http_without_webmock, :test, :minitest]
+Rake::TestTask.new(:minitest_hooks) do |test|
+  test.test_files = FileList["minitest/webmock_with_hooks_test.rb"]
+  test.options = "--pride"
+  test.verbose = false
+  test.warning = false
+end
+
+task default: [:spec, :spec_http_without_webmock, :test, :minitest, :minitest_hooks]
